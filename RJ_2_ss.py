@@ -181,7 +181,7 @@ def list_dl(List):
 def list_pr(list_pr):
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
-    print('<tr><td>You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Song: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
+    print('<tr><td>You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Album: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if int(album(url)[0]) is not 0:
         print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_dl(album(url))[(int(album(url)[0])-1)],'2':album(url)[0],'3':file_size(list_dl(album(url))[(int(album(url)[0])-1)])}+'</br></br></br>Other album tracks are:'+'</td></tr>')
         
