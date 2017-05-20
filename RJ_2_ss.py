@@ -120,19 +120,21 @@ def video(URL):
     return(vid_list)
 
 def album(URL):
-    all_track_nr=(html.count('?index='))//2
     track_list=[]
     if (URL.find('?index=')>0):
+        all_track_nr=((html.count('?index='))//2)-1
         a1=URL[:URL.find('?index=')]
         current_track_no=int(URL[len(a1)+len('?index='):])
         ID=a1[a1.find('/album/')+len('/album/'):]
         track_list.append('%s'%current_track_no)
     elif (URL.find('?start')>0):
+        all_track_nr=((html.count('?index='))//2)-1
         a1=URL[:URL.find('?start')]
         current_track_no=int(URL[len(a1)+len('?start'):])
         ID=a1[a1.find('/album/')+len('/album/'):]
         track_list.append('%s'%current_track_no)
     else:
+        all_track_nr=(html.count('?index='))//2
         a1=URL
         current_track_no=0
         ID=a1[a1.find('/album/')+len('/album/'):]
