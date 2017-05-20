@@ -1,5 +1,9 @@
 #!/home/nimasane/bin/python3.4
-
+#
+#This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to exctract direct download links for musics/video clips 
+#(3 different video quality)/podcasts and albums on Radiojavan.com. Moreover, it generates file size and depicts cover photos.
+#This is the exact copy on http://mynext.pro/RJ
+#
 import re
 from datetime import datetime
 import requests
