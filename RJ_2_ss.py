@@ -141,11 +141,12 @@ def album(URL):
         track_list.append('%s'%current_track_no)
     if z1>0:
         dl_link=z3
-        i=0
-        
-        while i<all_track_nr:
-            track_list.append('%s?index=%d'%(a1,i))
-            i+=1
+    else:
+        dl_link=l_mp3+ID+'.mp3'
+    i=0   
+    while i<all_track_nr:
+        track_list.append('%s?index=%d'%(a1,i))
+        i+=1
     return(track_list)
                 
 def podcast(URL):
@@ -170,8 +171,17 @@ def list_dl(List):
         a1=requests.get(List2[j])
         html=a1.text
         a2=html.find('<a href="javascript:void(0)" link="')
+        a2_len=len('<a href="javascript:void(0)" link="')
+        if a2<0:
+            a2=html.find("RJ.currentMP3Url = 'mp3/")
+            a2_len=len("RJ.currentMP3Url = 'mp3/")
         a3=html.find('" target="_blank" class="mp3_download_link">')
-        a4=html[a2+len('<a href="javascript:void(0)" link="'):a3]
+        if a3<0:
+            a3=html.find("RJ.currentMP3 = '")
+        a4=html[a2+a2_len:a3]
+        if a4.find("'")>0:
+            a41=a4[:a4.find("'")]
+            a4=l_mp3+a41+'.mp3'
         track_list_dl.append(a4)
         j+=1
     return(track_list_dl)
