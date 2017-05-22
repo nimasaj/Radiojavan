@@ -247,7 +247,7 @@ def pod_pr(dl):
             a5=a4[a4.find(i)+len(i):]
         else:
             a5=a4
-# ************************************************************************************ needs improvement from to line
+# ************************************************************************************ needs improvement from to this line
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
