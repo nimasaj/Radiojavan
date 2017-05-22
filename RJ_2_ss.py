@@ -234,6 +234,8 @@ def pod_pr(dl):
     a1=html.find('<div class="mp3_description">')
     a2=html.find('<div style="margin-top: 10px">')
     a3=html[a1+len('<div class="mp3_description">'):a2]
+# ************************************************************************************ needs improvement from this line
+# ***************************************************** Sometimes it doesn't block filter out keywords listed in list A
     A=[',','exclusively','on RJ',',','sponsored']
     for i in A:
         if a3.find(i)>0:
@@ -245,6 +247,7 @@ def pod_pr(dl):
             a5=a4[a4.find(i)+len(i):]
         else:
             a5=a4
+# ************************************************************************************ needs improvement from to line
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
