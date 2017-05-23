@@ -2,7 +2,7 @@
 #
 #This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to exctract direct download links for musics/video clips 
 #(3 different video quality)/podcasts and albums on Radiojavan.com. Moreover, it generates file size and depicts cover photos alongside 
-#showing artist/art name. This is the same copy running on http://mynext.pro/RJ
+#showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
 #
 import re
 from datetime import datetime
@@ -87,7 +87,10 @@ def artist_song(Html):
 
 def file_size(dl_link):
     file_size=requests.get(dl_link, stream=True)
-    file_size2=file_size.headers['content-length']
+    try:
+        file_size2=file_size.headers['content-length']
+    except KeyError:
+        file_size2='0'
     file_size3=int(file_size2)/1048576
     file_size4='%3.1f MB'%file_size3
     return (file_size4)
@@ -216,7 +219,7 @@ def single_pr(dl):
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl),dl)+'</td></tr></table>')
+    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Song: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl),dl)+'</td></tr></table>')
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p')) 
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
@@ -224,9 +227,21 @@ def single_pr(dl):
 def vid_pr(dl):
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
-    #print ('<tr>')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0]+'<table><tr><td></br><a href="%(q1)s">Download 480p</a> (%(fs1)s) at: %(q1)s</br></td></tr><tr><td><a href="%(q2)s">Download 720p</a> (%(fs2)s) at: %(q2)s</br></td></tr><tr><td><a href="%(q3)s">Download 1080p</a> (%(fs3)s) at: %(q3)s</br></td></tr>' %{'q1':video(url)[0], 'q2':video(url)[1], 'q3':video(url)[2], 'fs1':file_size(video(url)[0]),'fs2':file_size(video(url)[1]),'fs3':file_size(video(url)[2])}+'</table>')
+    j=0
+    k=0
+    AA=[]
+    AB=['Download 480p','Download 720p','Download 1080']
+    while j<len(video(url)):
+        if len(file_size(video(url)[j]))>6:
+            AA.append(video(url)[j])
+        j+=1
+    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
+    print('<table><tr><td></br>')
+    while k<len(AA):
+        print('<tr><td>'+'%s %s %s'%('<a href="%s"><b>%s</b></a>'%(AA[k],AB[k]),' (%s)'%file_size(AA[k]),'at: %s'%AA[k])+'</br></td></tr>')
+        k+=1
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p')) 
+    print('</td></tr></table>')
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
@@ -234,8 +249,6 @@ def pod_pr(dl):
     a1=html.find('<div class="mp3_description">')
     a2=html.find('<div style="margin-top: 10px">')
     a3=html[a1+len('<div class="mp3_description">'):a2]
-# ************************************************************************************ needs improvement from this line
-# ***************************************************** Sometimes it doesn't block filter out keywords listed in list A
     A=[',','exclusively','on RJ',',','sponsored']
     for i in A:
         if a3.find(i)>0:
@@ -247,7 +260,6 @@ def pod_pr(dl):
             a5=a4[a4.find(i)+len(i):]
         else:
             a5=a4
-# ************************************************************************************ needs improvement from to this line
     print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
@@ -270,7 +282,7 @@ if (url.find('radiojavan.com'))>=0:
         a='%s'%single_pr(mp3(url))
     
     elif (url.find('/video/'))>0:
-        a='%s'%vid_pr(url)
+        a='%s'%vid_pr(video(url))
         
     elif (url.find('/album/'))>0:
         a='%s'%list_pr(list_dl(album(url)))  
