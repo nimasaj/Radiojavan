@@ -69,13 +69,20 @@ def artist_song(Html):
     try:
         song=(' %s'%(a5.group(2)))
     except AttributeError:
-        song=(' %s'%(a6.group(1)))
+        try:
+            song=(' %s'%(a6.group(1)))
+        except AttributeError:
+            song=a4_fck
     A=[]
     A.append(song)
     try:
         ar1=a5.group(1)
     except AttributeError:
-        ar1=a6.group(2)
+        try:
+            ar1=a6.group(2)
+        except AttributeError:
+            #ar1=a4_fck
+            ar1=''
     if ('&amp' in ar1):
         ar2=re.match(r'(.*)amp;(.*)',ar1, re.M|re.I)
         artist=ar2.group(1)+ar2.group(2)
@@ -83,7 +90,6 @@ def artist_song(Html):
         artist=ar1
     A.append(artist)
     return (A)
-
 
 def file_size(dl_link):
     file_size=requests.get(dl_link, stream=True)
