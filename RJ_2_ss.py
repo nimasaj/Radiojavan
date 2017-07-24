@@ -18,9 +18,11 @@ else:
     url=""
     
 l_mp3= "https://rjmediamusic.com/media/mp3/"
-l_vid="https://rjmediamusic.com/media/music_video/"
+#l_vid="https://rjmediamusic.com/media/music_video/"
+l_vid=["https://host1.rjmediamusic.com/media/music_video/","https://host2.rjmediamusic.com/media/music_video/"]
 l_pod="https://rjmediamusic.com/media/podcast/"
 
+header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 ##########################################################
 #          Functions are listed below                    #
 ##########################################################
@@ -92,11 +94,11 @@ def artist_song(Html):
     return (A)
 
 def file_size(dl_link):
-    file_size=requests.get(dl_link, stream=True)
     try:
+        file_size=requests.get(dl_link, stream=True)
         file_size2=file_size.headers['content-length']
     except KeyError:
-        file_size2='0'
+        file_size2=0
     file_size3=int(file_size2)/1048576
     file_size4='%3.1f MB'%file_size3
     return (file_size4)
@@ -119,12 +121,17 @@ def video(URL):
     if a2<0:
         a2=len(url);
     a3=URL[a1+7:a2]
+    x=0
+    if (len(file_size(l_vid[x]+'lq/'+a3+'.mp4'))>6):
+        x=0
+    else:
+        x+=1
     vid_list=[]
-    q1=l_vid+'lq/'+a3+'.mp4'
+    q1=l_vid[x]+'lq/'+a3+'.mp4'
     vid_list.append(q1)
-    q2=l_vid+'hq/'+a3+'.mp4'
+    q2=l_vid[x]+'hq/'+a3+'.mp4'
     vid_list.append(q2)
-    q3=l_vid+'hd/'+a3+'.mp4'
+    q3=l_vid[x]+'hd/'+a3+'.mp4'
     vid_list.append(q3)
     return(vid_list)
 
@@ -198,7 +205,7 @@ def list_dl(List):
     
     
 def list_pr(list_pr):
-    print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+    print (header)
     print ('<table>')
     print('<tr><td>You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Album: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if ((album(url)[0]).isdigit() == True):
@@ -222,7 +229,7 @@ def list_pr(list_pr):
 
     
 def single_pr(dl):
-    print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+    print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
     print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Song: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl),dl)+'</td></tr></table>')
@@ -231,7 +238,7 @@ def single_pr(dl):
     print ("</body></html>");
 
 def vid_pr(dl):
-    print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+    print (header)
     print ('<table>')
     j=0
     k=0
@@ -269,7 +276,7 @@ def pod_pr(dl):
         else:
             a5=a4
 #************************************************************ It needs improvement up to this line 
-    print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+    print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
     print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a5,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl),dl)+'</td></tr></table>')
@@ -300,12 +307,12 @@ if (url.find('radiojavan.com'))>=0:
         a='%s'%pod_pr(podcast(url))
         
     else:
-        print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+        print (header)
         print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
         print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
         print ("</body></html>");
 else:
-    print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
+    print (header)
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
