@@ -308,7 +308,7 @@ def pod_pr(dl):
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a5,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl),dl)+'</td></tr></table>')
+    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a5,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     
