@@ -49,6 +49,7 @@ def Image(html):
     image_big='http://mynext.pro/RJ/tmp/%s_b_image.jpg'%artist_song(html)[1]
     A=[]
     A.append(image_big)
+    
     try:
         i_small=a4.group(1)[:len(a4.group(1))-4]+'-thumb.jpg'
     except AttributeError:
@@ -61,7 +62,7 @@ def Image(html):
     A.append(image_small)
     return (A)
 
-
+    
 def artist_song(Html):
     a1=Html.find('<meta property="og:title" content=')
     a2=Html.find('<meta property="og:type" content=')
@@ -112,7 +113,7 @@ def file_size(dl_link):
     fs.append('%.1f MB'%file_size3)
     return (fs)   
 
-
+    
 def check_host(cat,last_part):
     x=0
     i=0
@@ -132,7 +133,7 @@ def check_host(cat,last_part):
                 dl_link=l_host[x]+cat+last_part
     return(ch)
 
-
+    
 def mp3(url):
     a1=url.find('/mp3/')
     a2=url.find('?start')
@@ -145,7 +146,7 @@ def mp3(url):
         dl_link=check_host(l_mp3,a3)[0]
     return(dl_link)
 
-
+        
 def video(URL):
     a1=URL.find('/video/')
     a2=URL.find('?start')
@@ -192,8 +193,8 @@ def album(URL):
         track_list.append('%s?index=%d'%(a1,i))
         i+=1
     return(track_list)
-
-
+ 
+                
 def podcast(URL):
     a1=URL.find('/podcast/')
     a2=URL.find('?start')
@@ -204,7 +205,7 @@ def podcast(URL):
     if z1>0:
         dl_link=z3
     else:
-        dl_link=l_pod+ID+'.mp3'
+        dl_link=check_host(l_pod,ID+'.mp3')
     return(dl_link)
 
 
@@ -236,8 +237,8 @@ def list_DL(List):
             List_dl.append(a4)
         j+=1
     return(List_dl)
-
-
+    
+    
 def list_pr(list_pr):
     print (header)
     print ('<table>')
@@ -248,6 +249,7 @@ def list_pr(list_pr):
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
             print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
+        
     else:
         print('<table></br>')
         for i in list_pr:
@@ -260,7 +262,7 @@ def list_pr(list_pr):
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
-    
+
 def single_pr(dl):
     #print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print (header)
@@ -272,7 +274,7 @@ def single_pr(dl):
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
-    
+
 def vid_pr(dl):
     print (header)
     print ('<table>')
@@ -289,15 +291,17 @@ def vid_pr(dl):
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
-    
+
 def pod_pr(dl):
     p=0
     q=0
     a1=html.find('<div class="mp3_description">')
     a2=html.find('<div style="margin-top: 10px">')
+    if a2<0:
+        a2=a1+html[a1:].find('</div>')
     a3=html[a1+len('<div class="mp3_description">'):a2]
     a4=a3
-    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','/',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!','Cover photo: Nisha Barahmand','/ Photographer: Mobin Hekmatshoar', 'Cover by Negin Armon']
+    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','/',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!']
     B=['Cover photo: ','Photographer: ', 'Cover by ']
     while p<len(A):
         if a4.lower().find(A[p].lower())>=0:
@@ -305,11 +309,11 @@ def pod_pr(dl):
             rev2=a4[(a4.lower().find(A[p].lower()))+len(A[p].lower()):]
             a4='%s%s'%(rev1,rev2)
         p+=1
-        
     while q<len(B):
         if a4.lower().find(B[q].lower())>=0:
             a4='%s'%(a4[:(a4.lower().find(B[q].lower()))])
         q+=1
+            
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
@@ -351,3 +355,6 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
+    
+
+    
