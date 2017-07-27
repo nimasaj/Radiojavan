@@ -297,13 +297,19 @@ def pod_pr(dl):
     a2=html.find('<div style="margin-top: 10px">')
     a3=html[a1+len('<div class="mp3_description">'):a2]
     a4=a3
-    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!','Cover photo: Nisha Barahmand','/ Photographer: Mobin Hekmatshoar', 'Cover by Negin Armon']
+    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','/','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!','Cover photo: Nisha Barahmand','/ Photographer: Mobin Hekmatshoar', 'Cover by Negin Armon']
+    B=['Cover photo: ','Photographer: ', 'Cover by ']
     while p<len(A):
         if a4.lower().find(A[p].lower())>=0:
             rev1=a4[:(a4.lower().find(A[p].lower()))]
             rev2=a4[(a4.lower().find(A[p].lower()))+len(A[p].lower()):]
             a4='%s%s'%(rev1,rev2)
         p+=1
+        
+    while q<len(B):
+        if a4.lower().find(B[q].lower())>=0:
+            a4='%s'%(a4[:(a4.lower().find(B[q].lower()))])
+        q+=1
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
