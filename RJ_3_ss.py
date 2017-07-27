@@ -4,7 +4,6 @@
 #(3 different video quality)/podcasts and albums on Radiojavan.com. Moreover, it generates file size and depicts cover photos alongside 
 #showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
 #
-
 import re
 from datetime import datetime
 import requests
@@ -350,6 +349,10 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
+    
+
+    
+
     
 
     
