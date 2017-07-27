@@ -4,6 +4,7 @@
 #(3 different video quality)/podcasts and albums on Radiojavan.com. Moreover, it generates file size and depicts cover photos alongside 
 #showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
 #
+
 import re
 from datetime import datetime
 import requests
@@ -17,16 +18,13 @@ if url is not None:
 else:
     url=""
     
-#l_mp3= "https://rjmediamusic.com/media/mp3/"
-#l_vid="https://rjmediamusic.com/media/music_video/"
+
 l_mp3= 'mp3/mp3-256/'
 l_vid=["music_video/lq","music_video/hq","music_video/hd"]
 l_pod="podcast/"
 l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/"]
 
-#header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n</head>\n<body>'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
-#difficulties='</br><table><td><button type="button" data-toggle="collapse" data-target="#RFT">Difficulties in downloading?</button><div id="RFT" class="collapse">Paste generated link at the following box and submit</br><iframe src="/RFT" height="350" width="600"></iframe></div></td></table></br></br>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
 
 ##########################################################
@@ -61,7 +59,7 @@ def Image(html):
     image_small='http://mynext.pro/RJ/tmp/%s_s_image.jpg'%artist_song(html)[1]
     A.append(image_small)
     return (A)
-
+    
     
 def artist_song(Html):
     a1=Html.find('<meta property="og:title" content=')
@@ -99,8 +97,8 @@ def artist_song(Html):
         artist=ar1
     A.append(artist)
     return (A)
-
-
+    
+    
 def file_size(dl_link):
     fs=[]
     try:
@@ -111,8 +109,8 @@ def file_size(dl_link):
     file_size3=int(file_size2)/1048576
     fs.append('%d'%file_size3)
     fs.append('%.1f MB'%file_size3)
-    return (fs)   
-
+    return (fs)
+    
     
 def check_host(cat,last_part):
     x=0
@@ -132,7 +130,7 @@ def check_host(cat,last_part):
                 x+=1
                 dl_link=l_host[x]+cat+last_part
     return(ch)
-
+    
     
 def mp3(url):
     a1=url.find('/mp3/')
@@ -146,16 +144,16 @@ def mp3(url):
         dl_link=check_host(l_mp3,a3)[0]
     return(dl_link)
 
-        
+
 def video(URL):
+    vid_list=[]
+    x=0
     a1=URL.find('/video/')
     a2=URL.find('?start')
     if a2<0:
         a2=len(url);
     a3='/'+URL[a1+7:a2]+'.mp4'
     first_part=check_host(l_vid[0],a3)[1]
-    vid_list=[]
-    x=0
     for i in range(0,len(l_vid)):
         if x==len(l_vid):
             break
@@ -193,8 +191,7 @@ def album(URL):
         track_list.append('%s?index=%d'%(a1,i))
         i+=1
     return(track_list)
- 
-                
+    
 def podcast(URL):
     a1=URL.find('/podcast/')
     a2=URL.find('?start')
@@ -264,7 +261,6 @@ def list_pr(list_pr):
 
 
 def single_pr(dl):
-    #print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
@@ -278,7 +274,6 @@ def single_pr(dl):
 def vid_pr(dl):
     print (header)
     print ('<table>')
-    #print ('<tr>')
     j=0
     titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p']
     print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
@@ -313,7 +308,6 @@ def pod_pr(dl):
         if a4.lower().find(B[q].lower())>=0:
             a4='%s'%(a4[:(a4.lower().find(B[q].lower()))])
         q+=1
-            
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
@@ -321,8 +315,8 @@ def pod_pr(dl):
     #print('<tr><td>'+'a3 is %s'%a3+'</td></tr>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
-    print ("</body></html>");    
-
+    print ("</body></html>");
+    
 ##########################################################
 #          Functions are listed above                    #
 ##########################################################
@@ -355,6 +349,4 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
-    
-
     
