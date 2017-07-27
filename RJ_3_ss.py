@@ -244,13 +244,13 @@ def list_pr(list_pr):
         
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i).index(1))+i+'</td></tr>')
+            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
         
     else:
         print('<table></br>')
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i).index(1))+i+'</td></tr>')
+            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
             
     print('</table>')
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
@@ -349,6 +349,10 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
+    
+
+    
+
     
 
     
