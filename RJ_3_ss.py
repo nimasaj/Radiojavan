@@ -301,6 +301,8 @@ def pod_pr(dl):
         if a3.find(i)>0:
             
             a4=a3[a3.find('with')+len('with'):a3.find(i)]
+        else:
+            a4=a3
         
     B=['Listen and download the latest episode of','Listen to the special episode of']
     for i in B:
