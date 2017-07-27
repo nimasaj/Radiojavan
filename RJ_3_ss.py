@@ -48,15 +48,14 @@ def Image(html):
     A=[]
     A.append(image_big)
     
-    try:
-        i_small=a4.group(1)[:len(a4.group(1))-4]+'-thumb.jpg'
-    except AttributeError:
-        i_small='Have you pasted the RJ link correctly?\nMake sure that the link could be opened in your browser. If so, select it throughly and paste again'
-    else:
+    i_small=a4.group(1)[:len(a4.group(1))-4]+'-thumb.jpg'
+    if float(file_size(i_small)[0])!=0:
         image_small_dl=requests.get(i_small, stream=True)
         with open('../RJ/tmp/%s_s_image.jpg'%artist_song(html)[1], 'wb') as f:
             f.write(image_small_dl.content)
-    image_small='http://mynext.pro/RJ/tmp/%s_s_image.jpg'%artist_song(html)[1]
+        image_small='http://mynext.pro/RJ/tmp/%s_s_image.jpg'%artist_song(html)[1]
+    else:
+        image_small=image_big
     A.append(image_small)
     return (A)
     
@@ -107,7 +106,7 @@ def file_size(dl_link):
     except KeyError:
         file_size2=0
     file_size3=int(file_size2)/1048576
-    fs.append('%d'%file_size3)
+    fs.append('%.3f'%file_size3)
     fs.append('%.1f MB'%file_size3)
     return (fs)
     
@@ -118,7 +117,7 @@ def check_host(cat,last_part):
     ch=[]
     dl_link=l_host[x]+cat+last_part
     for i in range(0,len(l_host)):
-        if int(file_size(dl_link)[0])>0:
+        if float(file_size(dl_link)[0])>0:
             dl_link=l_host[x]+cat+last_part
             ch.append(dl_link)
             ch.append(l_host[x])
