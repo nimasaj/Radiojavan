@@ -49,7 +49,6 @@ def Image(html):
     image_big='http://mynext.pro/RJ/tmp/%s_b_image.jpg'%artist_song(html)[1]
     A=[]
     A.append(image_big)
-    
     try:
         i_small=a4.group(1)[:len(a4.group(1))-4]+'-thumb.jpg'
     except AttributeError:
@@ -231,10 +230,6 @@ def list_DL(List):
         j+=1
     return(List_dl)
     
-    
-
-    
-    
 def list_pr(list_pr):
     print (header)
     print ('<table>')
@@ -245,7 +240,6 @@ def list_pr(list_pr):
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
             print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
-        
     else:
         print('<table></br>')
         for i in list_pr:
@@ -256,11 +250,8 @@ def list_pr(list_pr):
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
-    
     print ("</body></html>");
-
-
-    
+   
 def single_pr(dl):
     #print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print (header)
@@ -270,7 +261,6 @@ def single_pr(dl):
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p')) 
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
-    
     print ("</body></html>");
 
 def vid_pr(dl):
@@ -279,13 +269,11 @@ def vid_pr(dl):
     #print ('<tr>')
     j=0
     titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p']
-   
     print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
     print('<table><tr><td></br>')
     while j<len(dl):
         print('<tr><td>'+'%s %s %s'%('<a href="%s"><b>%s</b></a>'%(dl[j],titles[j]),' (%s)'%file_size(dl[j])[1],'at: %s'%dl[j])+'</br></td></tr>')
         j+=1
-
     print('</td></tr></table>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
@@ -312,7 +300,6 @@ def pod_pr(dl):
     #print('<tr><td>'+'a3 is %s'%a3+'</td></tr>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
-    
     print ("</body></html>");    
 
 ##########################################################
