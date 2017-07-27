@@ -292,28 +292,27 @@ def vid_pr(dl):
     print ("</body></html>");
 
 def pod_pr(dl):
+    p=0
+    q=0
     a1=html.find('<div class="mp3_description">')
     a2=html.find('<div style="margin-top: 10px">')
     a3=html[a1+len('<div class="mp3_description">'):a2]
-    #a31=a3[a3.find('with')+len('with'):]
-    A=[',','exclusively','on RJ','sponsored']
-    for i in A:
-        if a3.find(i)>0:
-            
-            a4=a3[a3.find('with')+len('with'):a3.find(i)]
-        else:
-            a4=a3
-        
-    B=['Listen and download the latest episode of','Listen to the special episode of']
-    for i in B:
-        if a4.find(i)>0:
-            a5=a4[a4.find(i)+len(i):]
-        else:
-            a5=a4
+    a4=a3
+    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!','Cover photo: Nisha Barahmand','/ Photographer: Mobin Hekmatshoar', 'Cover by Negin Armon']
+    while p<len(A):
+        if a4.lower().find(A[p].lower())>=0:
+            rev1=a4[:(a4.lower().find(A[p].lower()))]
+            rev2=a4[(a4.lower().find(A[p].lower()))+len(A[p].lower()):]
+            a4='%s%s'%(rev1,rev2)
+
+        p+=1
+
+
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a5,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
+    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a4,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
+    #print('<tr><td>'+'a3 is %s'%a3+'</td></tr>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     
@@ -351,14 +350,3 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
-    
-
-    
-
-    
-
-    
-
-    
-
-    
