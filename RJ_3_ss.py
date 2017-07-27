@@ -60,7 +60,8 @@ def Image(html):
     image_small='http://mynext.pro/RJ/tmp/%s_s_image.jpg'%artist_song(html)[1]
     A.append(image_small)
     return (A)
-    
+
+
 def artist_song(Html):
     a1=Html.find('<meta property="og:title" content=')
     a2=Html.find('<meta property="og:type" content=')
@@ -110,7 +111,8 @@ def file_size(dl_link):
     fs.append('%d'%file_size3)
     fs.append('%.1f MB'%file_size3)
     return (fs)   
-    
+
+
 def check_host(cat,last_part):
     x=0
     i=0
@@ -129,7 +131,8 @@ def check_host(cat,last_part):
                 x+=1
                 dl_link=l_host[x]+cat+last_part
     return(ch)
-    
+
+
 def mp3(url):
     a1=url.find('/mp3/')
     a2=url.find('?start')
@@ -141,7 +144,8 @@ def mp3(url):
     else:
         dl_link=check_host(l_mp3,a3)[0]
     return(dl_link)
-        
+
+
 def video(URL):
     a1=URL.find('/video/')
     a2=URL.find('?start')
@@ -161,6 +165,7 @@ def video(URL):
                 break
             x+=1
     return(vid_list)
+
 
 def album(URL):
     track_list=[]
@@ -187,7 +192,8 @@ def album(URL):
         track_list.append('%s?index=%d'%(a1,i))
         i+=1
     return(track_list)
-                
+
+
 def podcast(URL):
     a1=URL.find('/podcast/')
     a2=URL.find('?start')
@@ -200,6 +206,7 @@ def podcast(URL):
     else:
         dl_link=l_pod+ID+'.mp3'
     return(dl_link)
+
 
 def list_DL(List):
     List=List[1:]
@@ -229,7 +236,8 @@ def list_DL(List):
             List_dl.append(a4)
         j+=1
     return(List_dl)
-    
+
+
 def list_pr(list_pr):
     print (header)
     print ('<table>')
@@ -251,7 +259,8 @@ def list_pr(list_pr):
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
-   
+
+    
 def single_pr(dl):
     #print ("Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title></head><body>");
     print (header)
@@ -263,6 +272,7 @@ def single_pr(dl):
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
+    
 def vid_pr(dl):
     print (header)
     print ('<table>')
@@ -279,6 +289,7 @@ def vid_pr(dl):
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
     print ("</body></html>");
 
+    
 def pod_pr(dl):
     p=0
     q=0
