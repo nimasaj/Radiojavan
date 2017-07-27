@@ -278,7 +278,7 @@ def vid_pr(dl):
     print ('<table>')
     #print ('<tr>')
     j=0
-    titles=['Download 480p','Download 720p','Download 1080']
+    titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p']
    
     print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
     print('<table><tr><td></br>')
