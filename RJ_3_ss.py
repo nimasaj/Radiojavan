@@ -304,10 +304,7 @@ def pod_pr(dl):
             rev1=a4[:(a4.lower().find(A[p].lower()))]
             rev2=a4[(a4.lower().find(A[p].lower()))+len(A[p].lower()):]
             a4='%s%s'%(rev1,rev2)
-
         p+=1
-
-
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
