@@ -1,4 +1,4 @@
-#!/home/<user>/bin/python3.4
+#!/home/yeki/bin/python3.4
 #
 #This script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
 #(including 3 different video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
@@ -296,7 +296,7 @@ def pod_pr(dl):
         a2=a1+html[a1:].find('</div>')
     a3=html[a1+len('<div class="mp3_description">'):a2]
     a4=a3
-    A=['Listen and download the latest episode of ','the special episode of ','the second episode of ',',','/',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!']
+    A=['Listen and download the latest episode of ','the special episode of ','Listen and enjoy ','the second episode of ',',','/',',','RJ presents ','Radio Javan presents ','exclusively','on RJ','sponsored','on Radio Javan','Listen to ','!']
     B=['Cover photo: ','Photographer: ', 'Cover by ']
     while p<len(A):
         if a4.lower().find(A[p].lower())>=0:
