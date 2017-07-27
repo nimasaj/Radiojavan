@@ -1,7 +1,7 @@
 #!/home/<user>/bin/python3.4
 #
-#This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to exctract direct download links for musics/video clips 
-#(3 different video quality)/podcasts and albums on Radiojavan.com. Moreover, it generates file size and depicts cover photos alongside 
+#This script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
+#(including 3 different video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
 #showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
 #
 
