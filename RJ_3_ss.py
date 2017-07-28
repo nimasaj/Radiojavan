@@ -240,7 +240,7 @@ def list_pr(list_pr):
     print ('<table>')
     print('<tr><td>You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Album: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if ((album(url)[0]).isdigit() == True):
-        print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_pr.index(int(album(url).index(0))),'2':(int(album(url).index(0)))+1,'3':file_size(list_pr[int(album(url).index(0))]).index(1)}+'</br></br></br>Other album tracks are:'+'</td></tr>')
+        print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1]}+'</br></br></br>All album tracks are:'+'</td></tr>')
         
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
