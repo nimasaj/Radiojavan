@@ -23,7 +23,10 @@ l_mp3= 'mp3/mp3-256/'
 l_vid=["music_video/lq","music_video/hq","music_video/hd"]
 l_pod="podcast/"
 l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/"]
-
+Artist='<font color="gray">Artist:</font>'
+Track='<font color="gray">Track:</font>'
+Song='<font color="gray">Song:</font>'
+ask='You asked for'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
 
@@ -238,7 +241,7 @@ def list_DL(List):
 def list_pr(list_pr):
     print (header)
     print ('<table>')
-    print('<tr><td>You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Album: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
+    print('<tr><td>%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Track,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if ((album(url)[0]).isdigit() == True):
         print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1]}+'</br></br></br>All album tracks are:'+'</td></tr>')
         
@@ -263,7 +266,7 @@ def single_pr(dl):
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Song: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
+    print ('<tr><td>'+'%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Song,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p')) 
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
@@ -275,7 +278,7 @@ def vid_pr(dl):
     print ('<table>')
     j=0
     titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p']
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist: %s</br>Track: %s</br></br></th></tr>'%(artist_song(html)[1],artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
+    print ('<tr><td>'+'%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Track,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
     print('<table><tr><td></br>')
     while j<len(dl):
         print('<tr><td>'+'%s %s %s'%('<a href="%s"><b>%s</b></a>'%(dl[j],titles[j]),' (%s)'%file_size(dl[j])[1],'at: %s'%dl[j])+'</br></td></tr>')
@@ -310,7 +313,7 @@ def pod_pr(dl):
     print (header)
     print ('<table>')
     #print ('<div align="center" style="border:1px solid red">')
-    print ('<tr><td>'+'You asked for %s</br></br></td></tr>'%url+'<tr><th>Artist:%s</br> %s</br> %s</br></br></th></tr>'%(a4,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
+    print ('<tr><td>'+'%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br> %s</br> %s</br></br></th></tr>'%(Artist,a4,artist_song(html)[0],artist_song(html)[1])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[1]+'<table><tr><td></br><a href="%s">Download track</a> (%s) at: %s'%(dl,file_size(dl)[1],dl)+'</td></tr></table>')
     #print('<tr><td>'+'a3 is %s'%a3+'</td></tr>')
     print(difficulties)
     print ("<p><b><a href='/RJ'>Try again</a></b></p>")
