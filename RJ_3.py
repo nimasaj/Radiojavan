@@ -23,10 +23,11 @@ l_mp3= 'mp3/mp3-256/'
 l_vid=["music_video/lq","music_video/hq","music_video/hd"]
 l_pod="podcast/"
 l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/"]
-Artist='<font color="gray">Artist:</font>'
-Album='<font color="gray">Album:</font>'
-Track='<font color="gray">Track:</font>'
-Song='<font color="gray">Song:</font>'
+font_size=2
+Artist='<font color="gray" size="%d">Artist:</font>'%font_size
+Album='<font color="gray" size="%d">Album:</font>'%font_size
+Track='<font color="gray" size="%d">Track:</font>'%font_size
+Song='<font color="gray" size="%d">Song:</font>'%font_size
 DL_track='Download track'
 ask='<font color="gray">You asked for</font>'
 color='<font color="gray">'
