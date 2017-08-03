@@ -24,8 +24,9 @@ l_vid=["music_video/lq","music_video/hq","music_video/hd"]
 l_pod="podcast/"
 l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/"]
 Artist='<font color="gray">Artist:</font>'
-Track='<font color="gray">Track:</font>'
+Album='<font color="gray">Album:</font>'
 Song='<font color="gray">Song:</font>'
+DL_track='Download track'
 ask='You asked for'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
@@ -241,19 +242,19 @@ def list_DL(List):
 def list_pr(list_pr):
     print (header)
     print ('<table>')
-    print('<tr><td>%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Track,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
+    print('<tr><td>%s %s</br></br></td></tr>'%(ask,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Album,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if ((album(url)[0]).isdigit() == True):
-        print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1]}+'</br></br></br>All album tracks are:'+'</td></tr>')
+        print('<table><tr><td>'+'</br><a href="%(1)s">%(4)s %(2)s</a> (%(3)s) at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1], '4':DL_track}+'</br></br></br>All album tracks are:'+'</td></tr>')
         
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
+            print ('<tr><td>'+'<a href="%s">%s %s</a> (%s) at: '%(i,DL_track,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
         
     else:
         print('<table></br>')
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">Download track %s</a> (%s) at: '%(i,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
+            print ('<tr><td>'+'<a href="%s">%s %s</a> (%s) at: '%(i,DL_track,list_pr.index(i)+1,file_size(i)[1])+i+'</td></tr>')
             
     print('</table>')
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
