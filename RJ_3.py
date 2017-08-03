@@ -27,7 +27,7 @@ Artist='<font color="gray">Artist:</font>'
 Album='<font color="gray">Album:</font>'
 Song='<font color="gray">Song:</font>'
 DL_track='Download track'
-ask='You asked for'
+ask='<font color="gray">You asked for</font>'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
 
