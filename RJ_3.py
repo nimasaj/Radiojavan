@@ -26,6 +26,7 @@ l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/
 Artist='<font color="gray">Artist:</font>'
 Album='<font color="gray">Album:</font>'
 Song='<font color="gray">Song:</font>'
+Track='<font color="gray">Track:</font>'
 DL_track='Download track'
 ask='<font color="gray">You asked for</font>'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
