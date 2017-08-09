@@ -236,13 +236,9 @@ def list_DL(List):
         p+=1
         
     for i in List2:
-        #--------------------
         s1=requests.Session()
         s1.get(url0)
         url_list=s1.get(List2[j], headers=headers)
-        #--------------------
-        #a1=requests.get(List2[j])
-        #html=a1.text
         html=url_list.text
         a2=html.find('<a href="javascript:void(0)" link="')
         a2_len=len('<a href="javascript:void(0)" link="')
@@ -362,13 +358,9 @@ def pod_pr(dl):
 ##########################################################
 
 if (url.find('radiojavan.com'))>=0:
-    #--------------------
     s=requests.Session()
     s.get(url0)
     url2=s.get(url, headers=headers)
-    #url2=requests.get(url, headers=headers)
-    #--------------------
-    #url2=requests.get(str(url))
     html=url2.text
     z1=html.find('<a href="javascript:void(0)" link="')
     z2=html.find('" target="_blank" class="mp3_download_link">')
