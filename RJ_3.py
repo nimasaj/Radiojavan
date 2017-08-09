@@ -28,11 +28,14 @@ Artist='<font color="gray" size="%d">Artist:</font>'%font_size
 Album='<font color="gray" size="%d">Album:</font>'%font_size
 Track='<font color="gray" size="%d">Track:</font>'%font_size
 Song='<font color="gray" size="%d">Song:</font>'%font_size
+
 DL_track='Download track'
 ask='<font color="gray">You asked for</font>'
 color='<font color="gray">'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
+url0='https://www.radiojavan.com'
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 ##########################################################
 #          Functions are listed below                    #
@@ -192,9 +195,16 @@ def album(URL):
         current_track_no='null'
         ID=a1[a1.find('/album/')+len('/album/'):]
         track_list.append('%s'%current_track_no)
-    i=0   
+    i=0
+    b=html[html.find('<span class="song_name">'):html.rfind('<span class="song_name">')]
+    b_len=len('<span class="song_name">')
+    iter=re.finditer(r'<span class="song_name">', b)
+    indices=[m.start(0) for m in iter]
     while i<all_track_nr:
         track_list.append('%s?index=%d'%(a1,i))
+        d=(b[indices[i]:].find('</span>'))
+        track_name=b[indices[i]+b_len:indices[i]+d]
+        track_list.append(track_name)
         i+=1
     return(track_list)
     
@@ -214,13 +224,26 @@ def podcast(URL):
 
 def list_DL(List):
     List=List[1:]
+    List2=[]
     ID_list=[]
     List_dl=[]
     k=0
     j=0
-    for i in List:
-        a1=requests.get(List[j])
-        html=a1.text
+    p=0
+    
+    while p*2<len(List):
+        List2.append(List[p*2])
+        p+=1
+        
+    for i in List2:
+        #--------------------
+        s1=requests.Session()
+        s1.get(url0)
+        url_list=s1.get(List2[j], headers=headers)
+        #--------------------
+        #a1=requests.get(List2[j])
+        #html=a1.text
+        html=url_list.text
         a2=html.find('<a href="javascript:void(0)" link="')
         a2_len=len('<a href="javascript:void(0)" link="')
         if a2<0:
@@ -241,23 +264,34 @@ def list_DL(List):
         j+=1
     return(List_dl)
     
+
+def track_name(List):
+    List2=[]
+    p=0
+
+    while p*2<len(List):
+        List2.append(List[p*2])
+        p+=1
+    List2=List2[1:]
+    return(List2)
     
-def list_pr(list_pr):
+    
+def list_pr(list_pr,trackname):
     print (header)
     print ('<table>')
     print('<tr><td>%s %s%s</font></br></br></td></tr>'%(ask,color,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Album,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr>'%Image(html)[1]+'</table>')
     if ((album(url)[0]).isdigit() == True):
-        print('<table><tr><td>'+'</br><a href="%(1)s">%(4)s %(2)s</a> (%(3)s) %(5)s at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1],'4':DL_track,'5':color}+'</font></br></br></br>All album tracks are:'+'</td></tr>')
+        print('<table><tr><td>'+'</br><a href="%(1)s">Download track %(2)s</a> - %(4)s (%(3)s) %(5)s at: %(1)s'%{'1':list_pr[int(album(url)[0])],'2':(int(album(url)[0]))+1,'3':file_size(list_pr[int(album(url)[0])])[1],'4':trackname[int(album(url)[0])],'5':color}+'</font></br></br></br>All album tracks are:'+'</td></tr>')
         
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">%s %s</a> (%s) %s at: '%(i,DL_track,list_pr.index(i)+1,file_size(i)[1],color)+i+'</font></td></tr>')
+            print ('<tr><td>'+'<a href="%s">Download track %s</a> - %s (%s) %s at: '%(i,list_pr.index(i)+1,trackname[list_pr.index(i)],file_size(i)[1],color)+i+'</font></td></tr>')
         
     else:
         print('<table></br>')
         for i in list_pr:
             #print ('<tr><td>'+i[0]+'<tr><td>'+i[1]+'</td></th>')
-            print ('<tr><td>'+'<a href="%s">%s %s</a> (%s) %s at: '%(i,DL_track,list_pr.index(i)+1,file_size(i)[1],color)+i+'</font></td></tr>')
+            print ('<tr><td>'+'<a href="%s">Download track %s</a> - %s (%s) %s at: '%(i,list_pr.index(i)+1,trackname[list_pr.index(i)],file_size(i)[1],color)+i+'</font></td></tr>')
             
     print('</table>')
     #print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
@@ -328,7 +362,13 @@ def pod_pr(dl):
 ##########################################################
 
 if (url.find('radiojavan.com'))>=0:
-    url2=requests.get(str(url))
+    #--------------------
+    s=requests.Session()
+    s.get(url0)
+    url2=s.get(url, headers=headers)
+    #url2=requests.get(url, headers=headers)
+    #--------------------
+    #url2=requests.get(str(url))
     html=url2.text
     z1=html.find('<a href="javascript:void(0)" link="')
     z2=html.find('" target="_blank" class="mp3_download_link">')
@@ -340,7 +380,7 @@ if (url.find('radiojavan.com'))>=0:
         a='%s'%vid_pr(video(url))
         
     elif (url.find('/album/'))>0:
-        a='%s'%(list_pr(list_DL(album(url)))) 
+        a='%s'%(list_pr(list_DL(album(url)),track_name(album(url)))) 
         
     elif (url.find('/podcast/'))>0:
         a='%s'%pod_pr(podcast(url))
@@ -355,4 +395,5 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
+    
     
