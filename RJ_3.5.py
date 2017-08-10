@@ -51,7 +51,7 @@ def Image(html):
     except AttributeError:
         i_big='Have you pasted the RJ link correctly?\nMake sure that the link could be opened in your browser. If so, select it throughly and paste again'
     else:
-        image_big_dl=requests.get(i_big, stream=True)
+        image_big_dl=s.get(i_big, stream=True)
         with open('../RJ/tmp/%s_b_image.jpg'%artist_song(html)[1], 'wb') as f:
             f.write(image_big_dl.content)
     image_big='http://mynext.pro/RJ/tmp/%s_b_image.jpg'%artist_song(html)[1]
@@ -60,7 +60,7 @@ def Image(html):
     
     i_small=a4.group(1)[:len(a4.group(1))-4]+'-thumb.jpg'
     if float(file_size(i_small)[0])!=0:
-        image_small_dl=requests.get(i_small, stream=True)
+        image_small_dl=s.get(i_small, stream=True)
         with open('../RJ/tmp/%s_s_image.jpg'%artist_song(html)[1], 'wb') as f:
             f.write(image_small_dl.content)
         image_small='http://mynext.pro/RJ/tmp/%s_s_image.jpg'%artist_song(html)[1]
@@ -111,7 +111,7 @@ def artist_song(Html):
 def file_size(dl_link):
     fs=[]
     try:
-        file_size=requests.get(dl_link, verify=True, stream=True)
+        file_size=s.get(dl_link, verify=True, stream=True, headers=headers)
         file_size2=file_size.headers['content-length']
     except KeyError:
         file_size2=0
@@ -236,9 +236,7 @@ def list_DL(List):
         p+=1
         
     for i in List2:
-        s1=requests.Session()
-        s1.get(url0)
-        url_list=s1.get(List2[j], headers=headers)
+        url_list=s.get(List2[j], headers=headers)
         html=url_list.text
         a2=html.find('<a href="javascript:void(0)" link="')
         a2_len=len('<a href="javascript:void(0)" link="')
