@@ -20,9 +20,9 @@ else:
     
 
 l_mp3= 'mp3/mp3-256/'
-l_vid=["music_video/lq","music_video/hq","music_video/hd"]
+l_vid=("music_video/lq","music_video/hq","music_video/hd")
 l_pod="podcast/"
-l_host=["https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/"]
+l_host=("https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/")
 font_size=2
 Artist='<font color="gray" size="%d">Artist:</font>'%font_size
 Album='<font color="gray" size="%d">Album:</font>'%font_size
