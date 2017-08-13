@@ -3,7 +3,7 @@ for free, but please give credits.
 
 ##
 
-## > All Features 
+> ## All Features 
 ```
 1. Showing artist/art name
 2. Depicting cover photo
