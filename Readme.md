@@ -4,6 +4,7 @@ for free, but please give credits.
 ## All Features 
 - [ ] Write tests
 ```
+- [ ] Write tests
 1. Showing artist/art name
 2. Depicting cover photo
 3. Showing file size
