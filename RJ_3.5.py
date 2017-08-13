@@ -122,8 +122,7 @@ def file_size(dl_link):
     
     
 def check_host(cat,last_part):
-    x=0
-    i=0
+    x,i=0,0
     ch=[]
     dl_link=l_host[x]+cat+last_part
     for i in range(0,len(l_host)):
@@ -224,13 +223,8 @@ def podcast(URL):
 
 def list_DL(List):
     List=List[1:]
-    List2=[]
-    ID_list=[]
-    List_dl=[]
-    k=0
-    j=0
-    p=0
-    
+    List2,ID_list,List_dl=[],[],[]
+    k,j,p=0,0,0    
     while p*2<len(List):
         List2.append(List[p*2])
         p+=1
@@ -322,8 +316,7 @@ def vid_pr(dl):
 
 
 def pod_pr(dl):
-    p=0
-    q=0
+    p,q=0,0
     a1=html.find('<div class="mp3_description">')
     a2=html.find('<div style="margin-top: 10px">')
     if a2<0:
