@@ -3,7 +3,7 @@ for free, but please give credits.
 
 ## All Features
 ```
-[1]. Showing artist/art name
+- [1]. Showing artist/art name
 2. Depicting cover photo
 3. Showing file size
 4. Showing full-album download list with inserting only a link to one of its tracks.
