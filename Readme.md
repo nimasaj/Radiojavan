@@ -1,9 +1,9 @@
-This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to exctract/generate direct download links for musics, video clips (all possible qualities), podcasts and albums on Radiojavan.com. All features are listed below. A copy of this script is running on http://mynext.pro/RJ. You may use it 
+> This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to exctract/generate direct download links for musics, video clips (all possible qualities), podcasts and albums on Radiojavan.com. All features are listed below. A copy of this script is running on http://mynext.pro/RJ. You may use it 
 for free, but please give credits. 
 
 ##
 
-## All Features 
+## > All Features 
 ```
 1. Showing artist/art name
 2. Depicting cover photo
