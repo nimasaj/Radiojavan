@@ -5,6 +5,7 @@ for free, but please give credits.
 
 > ## All Features 
 ```
+0. Generate download link for all media links on RadioJavan
 1. Showing artist/art name
 2. Depicting cover photo
 3. Showing file size
