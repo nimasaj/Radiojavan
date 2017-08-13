@@ -2,7 +2,6 @@ This script is written in Python3 by Nimasajedi[at]gmail.com on 20th May 2017 to
 for free, but please give credits. 
 
 ## All Features 
-- [ ] :
 ```
 1. Showing artist/art name
 2. Depicting cover photo
@@ -13,3 +12,4 @@ for free, but please give credits.
 7. Finding different host names on RJ servers
 8. Generating download link for different video qualities
 9. Generating download link for tracks/albums without download link on RJ pages.```
+- [ ] /
