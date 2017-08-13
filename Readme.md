@@ -5,16 +5,16 @@ for free, but please give credits.
 
 > ## All Features 
 ```
-- Generate download link for all media links on RadioJavan
-1. Showing artist/art name
-2. Depicting cover photo
-3. Showing file size
-4. Showing full-album download list with inserting only a link to one of its tracks.
-5. Showing track name for each album track
-6. Refining titles of Podcasts to look friendlier
-7. Finding different host names on RJ servers
-8. Generating download link for different video qualities
-9. Generating download link for tracks/albums without download link on RJ pages.
+1- Generate download link for all media links on RadioJavan
+2- Showing artist/art name
+3- Depicting cover photo
+4- Showing file size
+5- Showing full-album download list with inserting only a link to one of its tracks.
+6- Showing track name for each album track
+7- Refining titles of Podcasts to look friendlier
+8- Finding different host names on RJ servers
+9- Generating download link for different video qualities
+10- Generating download link for tracks/albums without download link on RJ pages.
 ```
 
 ## 
