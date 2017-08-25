@@ -303,7 +303,7 @@ def vid_pr(dl):
     print (header)
     print ('<table>')
     j=0
-    titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p','Download &nbsp;&nbsp;4K']
+    titles=['Download &nbsp; 480p','Download &nbsp; 720p','Download 1080p','Download &nbsp;&nbsp;4K&nbsp;']
     print ('<tr><td>'+'%s %s%s</font></br></br></td></tr>'%(ask,color,url)+'<tr><th>%s %s</br>%s %s</br></br></th></tr>'%(Artist,artist_song(html)[1],Track,artist_song(html)[0])+'<tr><th><img src="%s" /></th></tr></table>'%Image(html)[0])
     print('<table><tr><td></br>')
     while j<len(dl):
