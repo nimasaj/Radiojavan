@@ -20,7 +20,7 @@ else:
     
 
 l_mp3= 'mp3/mp3-256/'
-l_vid=("music_video/lq","music_video/hq","music_video/hd","music_video/4k)
+l_vid=("music_video/lq","music_video/hq","music_video/hd","music_video/4k")
 l_pod="podcast/"
 l_host=("https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/")
 font_size=2
