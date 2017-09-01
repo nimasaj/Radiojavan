@@ -1,9 +1,8 @@
 #!/home/<user>/bin/python3
-#
-#This script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
-#(including 3 different video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
-#showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
-#
+
+"""This script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
+(including 3 different video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
+showing artist/art name. A copy of this script is running on http://mynext.pro/RJ."""
 
 import re
 from datetime import datetime
