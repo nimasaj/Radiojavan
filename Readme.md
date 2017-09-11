@@ -14,8 +14,8 @@ for free, but please give credits.
 7- Refining titles of Podcasts to look friendlier
 8- Finding different host names on RJ servers
 9- Generating download link for different video qualities
-10- Generating download link for tracks/albums without having download link on RJ pages.
-11- Bypassing RJ limitation on Python requests via setting User-Agent and Sessions
+10- Generating download link for tracks/albums without having download link on RJ pages
+11- Bypassing RJ limitation on Python requests via setting User-Agent 
 ```
 
 ## 
