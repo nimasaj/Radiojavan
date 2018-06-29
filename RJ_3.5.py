@@ -1,8 +1,10 @@
 #!/home/<user>/bin/python3
-
-"""This script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
-(including 3 different video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
-showing artist/art name. A copy of this script is running on http://mynext.pro/RJ."""
+#
+"""This (server-side) script is first written on 20th May 2017 in Python3 by Nimasajedi[at]gmail.com to get direct download links for musics, video clips 
+(all video qualities), podcasts and albums on Radiojavan.com. Also, it generates file size beside depicting cover photos and 
+showing artist/art name. A copy of this script is running on http://mynext.pro/RJ
+"""
+#
 
 import re
 from datetime import datetime
@@ -21,7 +23,8 @@ else:
 l_mp3= 'mp3/mp3-256/'
 l_vid=("music_video/lq","music_video/hq","music_video/hd","music_video/4k")
 l_pod="podcast/"
-l_host=("https://host1.rjmediamusic.com/media/","https://host2.rjmediamusic.com/media/")
+l_host=("http://host1.rjmediamusic.com/media/","http://host2.rjmediamusic.com/media/","http://host2.rjmusicmedia.com/","http://host1.rjmusicmedia.com/media/")
+
 font_size=2
 Artist='<font color="gray" size="%d">Artist:</font>'%font_size
 Album='<font color="gray" size="%d">Album:</font>'%font_size
@@ -33,7 +36,7 @@ ask='<font color="gray">You asked for</font>'
 color='<font color="gray">'
 header='Content-type:text/html\r\n\r\n<html><head><title>Radiojavan.com download link generator</title>\n</head>\n<body>'
 difficulties='</br><h4>Having difficulties in downloading? Paste generated link <a href="/RFT">here</a>.</h4>'
-url0='https://www.radiojavan.com'
+url0='http://www.radiojavan.com'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 ##########################################################
@@ -110,6 +113,7 @@ def artist_song(Html):
 def file_size(dl_link):
     fs=[]
     try:
+        #file_size=requests.get(dl_link, verify=True, stream=True)
         file_size=s.get(dl_link, verify=True, stream=True, headers=headers)
         file_size2=file_size.headers['content-length']
     except KeyError:
@@ -223,13 +227,17 @@ def podcast(URL):
 def list_DL(List):
     List=List[1:]
     List2,ID_list,List_dl=[],[],[]
-    k,j,p=0,0,0    
+    k,j,p=0,0,0
+    
     while p*2<len(List):
         List2.append(List[p*2])
         p+=1
         
     for i in List2:
         url_list=s.get(List2[j], headers=headers)
+        #--------------------
+        #a1=requests.get(List2[j])
+        #html=a1.text
         html=url_list.text
         a2=html.find('<a href="javascript:void(0)" link="')
         a2_len=len('<a href="javascript:void(0)" link="')
@@ -348,9 +356,13 @@ def pod_pr(dl):
 ##########################################################
 
 if (url.find('radiojavan.com'))>=0:
+    #--------------------
     s=requests.Session()
     s.get(url0)
     url2=s.get(url, headers=headers)
+    #url2=requests.get(url, headers=headers)
+    #--------------------
+    #url2=requests.get(str(url))
     html=url2.text
     z1=html.find('<a href="javascript:void(0)" link="')
     z2=html.find('" target="_blank" class="mp3_download_link">')
@@ -377,4 +389,3 @@ else:
     print ("<p><b>Paste a Radiojavan link. </br></br><a href='/RJ'>Try again</a></b></p>")
     print(datetime.now().strftime('</br></br></br>%A, %d %b %Y, %I:%M:%S %p'))
     print ("</body></html>");
-    
