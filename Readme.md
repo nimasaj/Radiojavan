@@ -5,7 +5,7 @@ for free, but please give credits.
 
 > ## Features 
 ```
-1- Generate download link for all media links on RadioJavan (Single MP3, video clip, Album, Playlist)
+1- Generate download link for all media links on RadioJavan (single MP3, video clip, album, playlist)
 2- Showing artist/art name
 3- Depicting cover photo
 4- Showing file size
