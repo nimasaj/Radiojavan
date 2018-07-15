@@ -26,7 +26,7 @@ l_vid=("music_video/lq","music_video/hq","music_video/hd","music_video/4k")
 l_pod="podcast/"
 
 l_playlist="http://www.radiojavan.com/playlists/playlist/mp3/"
-l_host=("http://host1.rjmediamusic.com/media/","http://host2.rjmediamusic.com/media/","http://host2.rjmusicmedia.com/","http://host1.rjmusicmedia.com/media/")
+l_host=("http://host1.rjmediamusic.com/media/","http://host2.rjmediamusic.com/media/","http://host2.rjmusicmedia.com/","http://host1.rjmusicmedia.com/media/","http://rjmediamusic.com/media/")
 
 font_size=2
 Artist='<font color="gray" size="%d">Artist:</font>'%font_size
