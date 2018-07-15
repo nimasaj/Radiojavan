@@ -20,7 +20,8 @@ else:
     url=""
     
 
-l_mp3= 'mp3/mp3-256/'
+# l_mp3= 'mp3/mp3-256/'
+l_mp3= 'mp3/mp3/'
 l_vid=("music_video/lq","music_video/hq","music_video/hd","music_video/4k")
 l_pod="podcast/"
 
